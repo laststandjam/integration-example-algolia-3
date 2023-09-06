@@ -90,7 +90,7 @@ export const handler: Handler = serializeUncaughtErrorsHandler(async (event) => 
 
   const reIndexResponse = recordsToReIndex.length ? await index.saveObjects(recordsToReIndex).wait() : undefined;
   const deletedResponse = objectIdsToRemove.length ? await index.deleteObjects(objectIdsToRemove).wait() : undefined;
-
+console.log(deletedResponse)
   return {
     statusCode: 200,
     body: JSON.stringify({
