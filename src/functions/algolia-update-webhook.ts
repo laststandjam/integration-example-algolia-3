@@ -86,6 +86,7 @@ export const handler: Handler = serializeUncaughtErrorsHandler(async (event) => 
     ...new Map(actions.flatMap(a => a.recordsToReindex.map(i => [i.codename, i] as const))).values(),
   ];
   const objectIdsToRemove = [...new Set(actions.flatMap(a => a.objectIdsToRemove))];
+  console.log(objectIdsToRemove)
 
   const reIndexResponse = recordsToReIndex.length ? await index.saveObjects(recordsToReIndex).wait() : undefined;
   const deletedResponse = objectIdsToRemove.length ? await index.deleteObjects(objectIdsToRemove).wait() : undefined;
